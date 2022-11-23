@@ -1,10 +1,12 @@
 import styled from "@emotion/styled"
-import { FormEvent } from "react"
-import AuthLogin from "../Components/Auth/AuthLogin"
+import { FormEvent, useState } from "react"
 import AuthHeader from "../Components/Auth/AuthHeader"
 import AuthButton from "../Components/Common/AuthButton"
+import AuthCreate from "../Components/Auth/AuthCreate"
 
-const Login = () => {
+const Create = () => {
+	const [first, setfirst] = useState("")
+
 	const onSubmit = (event: FormEvent) => {
 		event.preventDefault()
 	}
@@ -13,7 +15,7 @@ const Login = () => {
 		<AuthContainer>
 			<AuthHeader />
 			<Form onSubmit={onSubmit}>
-				<AuthLogin />
+				<AuthCreate />
 				<AuthButton />
 			</Form>
 		</AuthContainer>
@@ -33,4 +35,4 @@ const AuthContainer = styled.main`
 
 const Form = styled.form``
 
-export default Login
+export default Create

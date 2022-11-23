@@ -1,12 +1,15 @@
 import React from "react"
+import useInput from "../../Hook/useInput"
 import styled from "@emotion/styled"
 
-const Login = () => {
+const AuthLogin = () => {
+	const inputEmail = useInput("")
+	const inputPassword = useInput("")
 	return (
 		<>
 			<AuthSection>
-				<Input type="text" placeholder="ID" />
-				<Input type="password" placeholder="PassWord" />
+				<Input type="email" {...inputEmail} placeholder="ID" />
+				<Input type="password" {...inputPassword} placeholder="PassWord" />
 			</AuthSection>
 		</>
 	)
@@ -32,4 +35,4 @@ const Input = styled.input`
 	}
 `
 
-export default Login
+export default AuthLogin

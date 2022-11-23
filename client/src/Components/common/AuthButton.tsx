@@ -1,11 +1,10 @@
 import styled from "@emotion/styled"
-import React from "react"
 
 const AuthButton = () => {
 	return (
 		<ButtonSection>
 			<Button type="submit">
-				<span>로그인</span>
+				<span>확인</span>
 			</Button>
 		</ButtonSection>
 	)
@@ -15,6 +14,7 @@ const ButtonSection = styled.section`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 20px 0;
 `
 
 const Button = styled.button`
