@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "@emotion/styled"
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 
 const Header = () => {
+	const isLoggined = useState(false)
 	return (
 		<>
 			<Head>
@@ -10,10 +11,20 @@ const Header = () => {
 					<Link to="/">투두리스트</Link>
 				</Title>
 				<AuthContainer>
-					<StyledLink to="/login">로그인</StyledLink>
-					<StyledLink to="/create">회원가입</StyledLink>
+					{isLoggined ? (
+						<>
+							<StyledLink to="Login">로그인</StyledLink>
+							<StyledLink to="Create">회원가입</StyledLink>
+						</>
+					) : (
+						<>
+							<StyledLink to="Login">로그인</StyledLink>
+							<StyledLink to="Create">회원가입</StyledLink>
+						</>
+					)}
 				</AuthContainer>
 			</Head>
+			<Outlet />
 		</>
 	)
 }
@@ -23,7 +34,10 @@ const Head = styled.nav`
 	justify-content: center;
 	height: 70px;
 	border-bottom: 1px solid #c0c0c0;
+	border-radius: 15px;
 	box-shadow: 0 4px 4px -4px #212121;
+	padding: 0 30px;
+	background-color: #f5f5f5;
 `
 
 const Title = styled.h1`

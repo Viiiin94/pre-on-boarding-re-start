@@ -16,7 +16,6 @@ const Create = () => {
 			<AuthHeader />
 			<Form onSubmit={onSubmit}>
 				<AuthCreate />
-				<AuthButton />
 			</Form>
 		</AuthContainer>
 	)
@@ -31,6 +30,10 @@ const AuthContainer = styled.main`
 	border: 1px solid #c9c9c9;
 	border-radius: 10px;
 	box-shadow: 2px 2px 6px -1px #212121;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 `
 
 const Form = styled.form``
