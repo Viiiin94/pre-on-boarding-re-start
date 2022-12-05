@@ -14,3 +14,5 @@ export interface AuthResponse {
 	message: string
 	token: string
 }
+
+export type CreateUser = Pick<User, "id" | "password">

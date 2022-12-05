@@ -1,10 +1,19 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { useState } from "react"
 
 const AuthHeader = () => {
+	const [first, setfirst] = useState(false)
 	return (
 		<TitleSection>
-			<Title>로그인</Title>
+			{first ? (
+				<>
+					<Title>로그인</Title>
+				</>
+			) : (
+				<>
+					<Title>회원가입</Title>
+				</>
+			)}
 		</TitleSection>
 	)
 }

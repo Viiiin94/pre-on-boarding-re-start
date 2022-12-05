@@ -1,22 +1,42 @@
 import styled from "@emotion/styled"
-import useInput from "../../Hook/useInput"
+import { ChangeEvent, useState } from "react"
+import { User } from "../../Types/auth"
+
+const initialValue = {
+	id: "",
+	email: "",
+	password: "",
+	createdAt: "",
+}
 
 const AuthCreate = () => {
-	const inputEmail = useInput("")
-	const inputPassword = useInput("")
-	const inputName = useInput("")
+	const [user, setUser] = useState<User>(initialValue)
+
+	const { id, email, password, createdAt } = user
+
+	const handleChangeUser = (event: ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target
+		setUser({ ...user, [name]: value })
+	}
 
 	return (
 		<>
 			<AuthSection>
-				<Input type="email" {...inputEmail} placeholder="ID" name="email" />
+				<Input
+					type="email"
+					placeholder="아이디"
+					name="email"
+					value={email}
+					onChange={handleChangeUser}
+				/>
 				<Input
 					type="password"
-					{...inputPassword}
-					placeholder="PassWord"
+					placeholder="비밀번호"
 					name="password"
+					value={password}
+					onChange={handleChangeUser}
 				/>
-				<Input type="text" {...inputName} placeholder="Name" name="name" />
+				<Input type="text" placeholder="이름" name="name" />
 			</AuthSection>
 			<ButtonSection>
 				<Button type="submit">
@@ -37,7 +57,7 @@ const Input = styled.input`
 	margin: 10px auto;
 	padding: 0 10px;
 	font-size: 30px;
-	max-width: 200px;
+	max-width: 300px;
 
 	border: 1px solid #c0c0c0;
 	border-radius: 15px;

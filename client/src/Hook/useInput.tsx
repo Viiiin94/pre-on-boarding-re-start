@@ -9,7 +9,7 @@ const useInput = (initailValue: string) => {
 		} = event
 		setValue(value)
 	}
-	console.log(value)
+	// console.log(value)
 
 	const reset = () => setValue("")
 

@@ -2,7 +2,6 @@ import styled from "@emotion/styled"
 import { FormEvent } from "react"
 import AuthLogin from "../Components/Auth/AuthLogin"
 import AuthHeader from "../Components/Auth/AuthHeader"
-import AuthButton from "../Components/Common/AuthButton"
 
 const Login = () => {
 	const onSubmit = (event: FormEvent) => {
@@ -32,6 +31,7 @@ const AuthContainer = styled.main`
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	background-color: #f5f5f5;
 `
 
 const Form = styled.form``

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Create from "../Pages/Create"
 import Header from "../Pages/Header"
 import Login from "../Pages/Login"

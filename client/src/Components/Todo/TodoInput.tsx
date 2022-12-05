@@ -1,15 +1,33 @@
 import styled from "@emotion/styled"
-import React from "react"
+import { FormEvent } from "react"
+import useInput from "../../Hook/useInput"
 
 const TodoInput = () => {
+	const title = useInput("")
+	const content = useInput("")
+
+	const handleSubmit = (event: FormEvent) => {
+		event.preventDefault()
+	}
+
 	return (
 		<>
 			<Container>
-				<InputTitleSection>
-					<Input type="text" placeholder="제목" />
+				<InputTitleSection onSubmit={handleSubmit}>
+					<Input
+						type="text"
+						placeholder="제목"
+						value={title.value}
+						onChange={title.onChange}
+					/>
 				</InputTitleSection>
 				<InputContentsSection>
-					<TextArea type="textarea" placeholder="내용" />
+					<TextArea
+						type="textarea"
+						placeholder="내용"
+						value={content.value}
+						onChange={content.onChange}
+					/>
 					<button>작성</button>
 					<button>취소</button>
 				</InputContentsSection>

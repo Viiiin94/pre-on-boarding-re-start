@@ -1,15 +1,14 @@
 import styled from "@emotion/styled"
-import { FormEvent, useState } from "react"
+import { FormEvent, useCallback, useState } from "react"
 import AuthHeader from "../Components/Auth/AuthHeader"
-import AuthButton from "../Components/Common/AuthButton"
 import AuthCreate from "../Components/Auth/AuthCreate"
 
 const Create = () => {
 	const [first, setfirst] = useState("")
 
-	const onSubmit = (event: FormEvent) => {
+	const onSubmit = useCallback((event: FormEvent) => {
 		event.preventDefault()
-	}
+	}, [])
 
 	return (
 		<AuthContainer>
@@ -34,6 +33,7 @@ const AuthContainer = styled.main`
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	background-color: #f5f5f5;
 `
 
 const Form = styled.form``
