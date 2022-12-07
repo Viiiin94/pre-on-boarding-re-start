@@ -1,35 +1,66 @@
 import styled from "@emotion/styled"
-import { FormEvent } from "react"
-import useInput from "../../Hook/useInput"
+import { ChangeEvent, FormEvent, useState } from "react"
+import { addTodos } from "../../Store/todoSlice"
+import { useAppDispatch, useAppSelector } from "../../Hook/dispatchhook"
+import { Todo } from "../../Types/todo"
 
 const TodoInput = () => {
-	const title = useInput("")
-	const content = useInput("")
+	const [title, setTitle] = useState("")
+	const [content, setContent] = useState("")
+
+	const { todoList } = useAppSelector((state) => state.todo)
+	const dispatch = useAppDispatch()
+
+	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const {
+			currentTarget: { value },
+		} = event
+		setTitle(value)
+	}
+	const onTextAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const {
+			currentTarget: { value },
+		} = event
+		setContent(value)
+	}
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault()
+		const insertItem: Todo = {
+			id: `${new Date()}`,
+			title: title,
+			content: content,
+			createdAt: `${new Date()}`,
+			updatedAt: `${new Date()}`,
+		}
+		const setTodoList = [...todoList, insertItem]
+
+		dispatch(addTodos(setTodoList))
+		setTitle("")
+		setContent("")
 	}
 
 	return (
 		<>
-			<Container>
-				<InputTitleSection onSubmit={handleSubmit}>
+			<Container onSubmit={handleSubmit}>
+				<InputTitleSection>
 					<Input
 						type="text"
+						name="title"
 						placeholder="제목"
-						value={title.value}
-						onChange={title.onChange}
+						value={title}
+						onChange={onInputChange}
 					/>
 				</InputTitleSection>
 				<InputContentsSection>
 					<TextArea
 						type="textarea"
+						name="content"
 						placeholder="내용"
-						value={content.value}
-						onChange={content.onChange}
+						value={content}
+						onChange={onTextAreaChange}
 					/>
 					<button>작성</button>
-					<button>취소</button>
 				</InputContentsSection>
 			</Container>
 		</>

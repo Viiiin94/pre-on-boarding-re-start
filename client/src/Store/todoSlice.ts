@@ -1,31 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { CreateUser } from "../Types/auth"
 import { Todo } from "../Types/todo"
 
-const todoInitial: Todo = {
-	id: "",
-	title: "",
-	content: "",
-	createdAt: "",
-	updatedAt: "",
+export interface CommonState {
+	todoList: Todo[]
 }
 
-const todoSlice = createSlice({
+const initialState: CommonState = {
+	todoList: [],
+}
+
+export const todoSlice = createSlice({
 	name: "todos",
-	initialState: {
-		todos: [],
-		todoInitial,
-	},
+	initialState,
 	reducers: {
-		addTodos: (state, action: PayloadAction) => {
-			const addTodo = {
-				id: `${state.todoInitial.title}_${state.todoInitial.id}`,
-				title: state.todoInitial.title,
-				content: state.todoInitial.content,
-				createdAt: state.todoInitial.createdAt,
-				updatedAt: state.todoInitial.updatedAt,
-			}
-			state.todos.push(addTodo)
+		addTodos: (state, action: PayloadAction<Todo[]>) => {
+			state.todoList = action.payload
 		},
 	},
 })
+
+export const { addTodos } = todoSlice.actions
+
+export default todoSlice.reducer
