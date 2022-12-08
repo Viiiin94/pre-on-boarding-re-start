@@ -8,13 +8,13 @@ const Header = () => {
 		<>
 			<Head>
 				<Title>
-					<Link to="/">투두리스트</Link>
+					<Link to="/Todos">투두리스트</Link>
 				</Title>
 				<AuthContainer>
 					{isLoggined ? (
 						<>
-							<StyledLink to="Login">로그인</StyledLink>
-							<StyledLink to="Create">회원가입</StyledLink>
+							<StyledLink to="Login">로그아웃</StyledLink>
+							<StyledLink to="Create">나의 투두</StyledLink>
 						</>
 					) : (
 						<>

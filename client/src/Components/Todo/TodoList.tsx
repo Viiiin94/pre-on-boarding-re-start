@@ -1,15 +1,23 @@
 import styled from "@emotion/styled"
+import { FormEvent } from "react"
 import TodoItem from "./TodoItem"
 
 const TodoList = () => {
+	const onSubmit = (event: FormEvent) => {
+		event.preventDefault()
+	}
 	return (
 		<>
-			<Container>
-				<TodoItem />
-			</Container>
+			<Form onSubmit={onSubmit}>
+				<Container>
+					<TodoItem />
+				</Container>
+			</Form>
 		</>
 	)
 }
+
+const Form = styled.form``
 
 const Container = styled.ol`
 	width: 355px;

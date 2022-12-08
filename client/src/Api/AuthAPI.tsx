@@ -21,8 +21,12 @@ instance.interceptors.response.use(
 	}
 )
 
+const fetchLogin = (props: User) => {
+	return instance.post("login", props)
+}
+
 const fetchSignUp = (props: User) => {
 	return instance.post("create", props)
 }
 
-export { fetchSignUp }
+export { fetchLogin, fetchSignUp }

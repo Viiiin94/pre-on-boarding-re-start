@@ -1,15 +1,32 @@
-import React from "react"
-import useInput from "../../Hook/useInput"
+import React, { ChangeEvent, FormEvent, useState } from "react"
 import styled from "@emotion/styled"
 
 const AuthLogin = () => {
-	const inputEmail = useInput("")
-	const inputPassword = useInput("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+
+	const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+		setEmail(event.currentTarget.value)
+	}
+	const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+		setPassword(event.currentTarget.value)
+	}
+
 	return (
 		<>
 			<AuthSection>
-				<Input type="email" {...inputEmail} placeholder="ID" />
-				<Input type="password" {...inputPassword} placeholder="PassWord" />
+				<Input
+					type="email"
+					placeholder="ID"
+					value={email}
+					onChange={onChangeEmail}
+				/>
+				<Input
+					type="password"
+					placeholder="PassWord"
+					value={password}
+					onChange={onChangePassword}
+				/>
 			</AuthSection>
 			<ButtonSection>
 				<Button type="submit">

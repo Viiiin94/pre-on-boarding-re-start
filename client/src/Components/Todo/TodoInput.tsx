@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { ChangeEvent, FormEvent, useState } from "react"
-import { addTodos } from "../../Store/todoSlice"
+import { setTodos } from "../../Store/todoSlice"
 import { useAppDispatch, useAppSelector } from "../../Hook/dispatchhook"
 import { Todo } from "../../Types/todo"
 
@@ -35,7 +35,7 @@ const TodoInput = () => {
 		}
 		const setTodoList = [...todoList, insertItem]
 
-		dispatch(addTodos(setTodoList))
+		dispatch(setTodos(setTodoList))
 		setTitle("")
 		setContent("")
 	}
@@ -60,7 +60,9 @@ const TodoInput = () => {
 						value={content}
 						onChange={onTextAreaChange}
 					/>
-					<button>작성</button>
+					<Button disabled={!title || !content}>
+						<span>작성</span>
+					</Button>
 				</InputContentsSection>
 			</Container>
 		</>
@@ -96,6 +98,23 @@ const TextArea = styled.input`
 	width: 770px;
 	height: 405px;
 	font-size: 20px;
+`
+
+const Button = styled.button`
+	background-color: #fff;
+	float: right;
+	margin: 10px 0 0 0;
+	width: 80px;
+	height: 40px;
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	cursor: pointer;
+	&:hover {
+		background-color: #f56360;
+		color: #fff;
+		border: 1px solid #fff;
+		transition-duration: 0.5s;
+	}
 `
 
 export default TodoInput
