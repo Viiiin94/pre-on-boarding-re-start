@@ -1,8 +1,3 @@
-export interface input {
-	id: string
-	password: string
-}
-
 export interface User {
 	id: string
 	email: string
@@ -16,3 +11,5 @@ export interface AuthResponse {
 }
 
 export type CreateUser = Pick<User, "id" | "password">
+
+export type LoginUser = Pick<User, "email" | "password">

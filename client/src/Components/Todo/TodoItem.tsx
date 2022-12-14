@@ -2,35 +2,34 @@ import styled from "@emotion/styled"
 import { useAppDispatch, useAppSelector } from "../../Hook/dispatchhook"
 import { CgAdd, CgRemove } from "react-icons/cg"
 import { setTodos } from "../../Store/todoSlice"
+import { useState, MouseEvent } from "react"
+import { Todo } from "../../Types/todo"
 
 const TodoItem = () => {
-	const { todoList } = useAppSelector((state) => state.todo)
+	const [titleId, setTitleId] = useState(false)
+	const [titleChange, setTitleChange] = useState("")
+
+	const { TodoList } = useAppSelector((state) => state.todo)
 	const dispatch = useAppDispatch()
 
 	const updateTodo = (id: any) => {
-		const setTodolist = [...todoList]
-		const updateTodoIdx = setTodolist.findIndex(
-			(item) => item.id === id.currentTarget.id
-		)
+		const setTodolist = [...TodoList]
+		let updateTodoIdx = setTodolist.findIndex((item) => item.id === id)
 
-		setTodolist.map((item) => {
-			if (item.id === todoList[updateTodoIdx].id) {
-				item.content = "바뀜"
-			}
-		})
+		setTitleId((prev) => !prev)
+
+		console.log(setTodolist[updateTodoIdx + 1])
 	}
 
 	const onRemoveTodo = (id: any) => {
-		const setTodolist = [...todoList]
-		const removeTodoIdx = setTodolist.findIndex(
-			(item) => item.id === id.currentTarget.id
-		)
+		const setTodolist = [...TodoList]
+		const removeTodoIdx = setTodolist.findIndex((item) => item.id === id)
 
 		setTodolist.splice(removeTodoIdx, 1)
 		dispatch(setTodos(setTodolist))
 	}
 
-	const Todolists: JSX.Element[] = todoList.map((todo) => (
+	const Todolists: JSX.Element[] = TodoList.map((todo: Todo) => (
 		<TodoLists key={`${todo.title}_${todo.id}`}>
 			<p>{todo.title}</p>
 			<span>{todo.content}</span>
@@ -44,6 +43,7 @@ const TodoItem = () => {
 			</div>
 		</TodoLists>
 	))
+
 	return <>{Todolists}</>
 }
 

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Todo } from "../Types/todo"
 
-export interface CommonState {
-	todoList: Todo[]
+export type commonState = {
+	TodoList: Todo[]
 }
 
-const initialState: CommonState = {
-	todoList: [],
+const initialState: commonState = {
+	TodoList: [],
 }
 
 export const todoSlice = createSlice({
@@ -14,7 +14,7 @@ export const todoSlice = createSlice({
 	initialState,
 	reducers: {
 		setTodos: (state, action: PayloadAction<Todo[]>) => {
-			state.todoList = action.payload
+			state.TodoList.push())
 		},
 	},
 })

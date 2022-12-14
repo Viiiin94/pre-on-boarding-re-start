@@ -1,15 +1,20 @@
 import React, { ChangeEvent, FormEvent, useState } from "react"
 import styled from "@emotion/styled"
+import { useAppSelector, useAppDispatch } from "../../Hook/dispatchhook"
+import { LoginUser } from "../../Types/auth"
 
 const AuthLogin = () => {
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
+	const [useremail, setUserEmail] = useState("")
+	const [userpassword, setUserPassword] = useState("")
+
+	const {email, password} = useAppSelector((state) => state.user)
+	const dispatch = useAppDispatch()
 
 	const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-		setEmail(event.currentTarget.value)
+		setUserEmail(event.currentTarget.value)
 	}
 	const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-		setPassword(event.currentTarget.value)
+		setUserPassword(event.currentTarget.value)
 	}
 
 	return (
@@ -18,13 +23,13 @@ const AuthLogin = () => {
 				<Input
 					type="email"
 					placeholder="ID"
-					value={email}
+					value={useremail}
 					onChange={onChangeEmail}
 				/>
 				<Input
 					type="password"
 					placeholder="PassWord"
-					value={password}
+					value={userpassword}
 					onChange={onChangePassword}
 				/>
 			</AuthSection>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useCallback, useState } from "react"
 import { setTodos } from "../../Store/todoSlice"
 import { useAppDispatch, useAppSelector } from "../../Hook/dispatchhook"
 import { Todo } from "../../Types/todo"
@@ -8,32 +8,38 @@ const TodoInput = () => {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState("")
 
-	const { todoList } = useAppSelector((state) => state.todo)
+	const { TodoList } = useAppSelector((state) => state.todo)
 	const dispatch = useAppDispatch()
 
-	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const {
-			currentTarget: { value },
-		} = event
-		setTitle(value)
-	}
-	const onTextAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const {
-			currentTarget: { value },
-		} = event
-		setContent(value)
-	}
+	const onInputChange = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			const {
+				currentTarget: { value },
+			} = event
+			setTitle(value)
+		},
+		[title]
+	)
+	const onTextAreaChange = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			const {
+				currentTarget: { value },
+			} = event
+			setContent(value)
+		},
+		[content]
+	)
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault()
 		const insertItem: Todo = {
-			id: `${new Date()}`,
+			id: `__${title}`,
 			title: title,
 			content: content,
 			createdAt: `${new Date()}`,
 			updatedAt: `${new Date()}`,
 		}
-		const setTodoList = [...todoList, insertItem]
+		const setTodoList = [...TodoList, insertItem]
 
 		dispatch(setTodos(setTodoList))
 		setTitle("")
