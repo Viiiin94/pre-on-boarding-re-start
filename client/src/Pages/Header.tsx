@@ -11,10 +11,10 @@ const Header = () => {
 					<Link to="/Todos">투두리스트</Link>
 				</Title>
 				<AuthContainer>
-					{isLoggined ? (
+					{!isLoggined ? (
 						<>
 							<StyledLink to="Login">로그아웃</StyledLink>
-							<StyledLink to="Create">나의 투두</StyledLink>
+							<StyledLink to="Todos">나의 투두</StyledLink>
 						</>
 					) : (
 						<>

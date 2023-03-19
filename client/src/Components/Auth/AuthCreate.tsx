@@ -1,23 +1,27 @@
 import styled from "@emotion/styled"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useCallback, useState } from "react"
+import { useAppSelector, useAppDispatch } from "../../Hook/dispatchhook"
 import { User } from "../../Types/auth"
 
-const initialValue = {
-	id: "",
-	email: "",
-	password: "",
-	createdAt: "",
-}
+const { email, password } = useAppSelector((state) => state.user)
+const dispatch = useAppDispatch()
 
 const AuthCreate = () => {
-	const [user, setUser] = useState<User>(initialValue)
+	const [user, setUser] = useState<User>({
+		id: "",
+		email: "",
+		password: "",
+	})
 
-	const { id, email, password, createdAt } = user
+	const { id, email, password } = user
 
-	const handleChangeUser = (event: ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = event.target
-		setUser({ ...user, [name]: value })
-	}
+	const handleChangeUser = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			const { name, value } = event.target
+			setUser({ ...user, [name]: value })
+		},
+		[user]
+	)
 
 	return (
 		<>
@@ -36,7 +40,13 @@ const AuthCreate = () => {
 					value={password}
 					onChange={handleChangeUser}
 				/>
-				<Input type="text" placeholder="이름" name="name" />
+				<Input
+					type="text"
+					placeholder="이름"
+					name="id"
+					value={id}
+					onChange={handleChangeUser}
+				/>
 			</AuthSection>
 			<ButtonSection>
 				<Button type="submit">

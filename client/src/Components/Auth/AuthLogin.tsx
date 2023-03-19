@@ -1,13 +1,12 @@
-import React, { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import styled from "@emotion/styled"
 import { useAppSelector, useAppDispatch } from "../../Hook/dispatchhook"
-import { LoginUser } from "../../Types/auth"
 
 const AuthLogin = () => {
 	const [useremail, setUserEmail] = useState("")
 	const [userpassword, setUserPassword] = useState("")
 
-	const {email, password} = useAppSelector((state) => state.user)
+	const { email, password } = useAppSelector((state) => state.user)
 	const dispatch = useAppDispatch()
 
 	const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
