@@ -1,5 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { LoginUser, AuthResponse } from "../Types/auth"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import axios from "axios"
+import { LoginUser, AuthResponse, CreateUser } from "../Types/auth"
+
+export const addCreateUser = createAsyncThunk(
+	"Create",
+	async (user: CreateUser) => {
+		const response = await axios.post("http://localhost:8080/user", user)
+		return response.data
+	}
+)
 
 export interface LoginType {
 	email: string

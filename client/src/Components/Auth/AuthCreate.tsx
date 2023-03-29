@@ -3,24 +3,24 @@ import { ChangeEvent, useCallback, useState } from "react"
 import { useAppSelector, useAppDispatch } from "../../Hook/dispatchhook"
 import { User } from "../../Types/auth"
 
-// const { email, password } = useAppSelector((state) => state.user)
-// const dispatch = useAppDispatch()
-
 const AuthCreate = () => {
-	const [user, setUser] = useState<User>({
+	// const { email, password } = useAppSelector((state) => state.user)
+	// const dispatch = useAppDispatch()
+
+	const [users, setUsers] = useState<User>({
 		id: "",
 		email: "",
 		password: "",
 	})
 
-	const { id, email, password } = user
+	const { id, email, password } = users
 
 	const handleChangeUser = useCallback(
 		(event: ChangeEvent<HTMLInputElement>) => {
 			const { name, value } = event.target
-			setUser({ ...user, [name]: value })
+			setUsers({ ...users, [name]: value })
 		},
-		[user]
+		[users]
 	)
 
 	return (
