@@ -1,16 +1,6 @@
-import {
-	configureStore,
-	ThunkAction,
-	Action,
-	combineReducers,
-} from "@reduxjs/toolkit"
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import todoReducer from "./todoSlice"
 import userReducer from "./userSlice"
-
-// export const rootReducer = combineReducers({
-// 	user: userSlice,
-// 	todo: todoSlice,
-// })
 
 export const store = configureStore({
 	reducer: { todo: todoReducer, user: userReducer },

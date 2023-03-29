@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import styled from "@emotion/styled"
 import { Link, Outlet } from "react-router-dom"
 

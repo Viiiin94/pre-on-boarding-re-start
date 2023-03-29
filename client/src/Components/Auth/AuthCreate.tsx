@@ -3,8 +3,8 @@ import { ChangeEvent, useCallback, useState } from "react"
 import { useAppSelector, useAppDispatch } from "../../Hook/dispatchhook"
 import { User } from "../../Types/auth"
 
-const { email, password } = useAppSelector((state) => state.user)
-const dispatch = useAppDispatch()
+// const { email, password } = useAppSelector((state) => state.user)
+// const dispatch = useAppDispatch()
 
 const AuthCreate = () => {
 	const [user, setUser] = useState<User>({

@@ -1,11 +1,9 @@
 import styled from "@emotion/styled"
-import { FormEvent, useCallback, useState } from "react"
+import { FormEvent, useCallback } from "react"
 import AuthHeader from "../Components/Auth/AuthHeader"
 import AuthCreate from "../Components/Auth/AuthCreate"
 
 const Create = () => {
-	const [first, setfirst] = useState("")
-
 	const onSubmit = useCallback((event: FormEvent) => {
 		event.preventDefault()
 	}, [])
